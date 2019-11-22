@@ -222,6 +222,7 @@ export default new Vuex.Store({
       })
     },
     updatequestions({commit}, payload){
+      // console.log(payload)
       return new Promise((resolve, reject) => {
         axios({
           method: 'PUT',
@@ -238,6 +239,34 @@ export default new Vuex.Store({
         .catch(({response}) => {
           reject(response.data)
         })
+      })
+    },
+    deletequestion({commit}, payload){
+      return new Promise((resolve, reject) => {
+        axios({
+          method: 'DELETE',
+          url: `question/${payload}`
+        })
+        .then(({data}) => {
+          resolve(data)
+        })
+        .catch(({response}) => {
+          reject(response.data)
+        })
+      })
+    },
+    search({commit}, payload){
+      console.log(payload, 'aaaaaaaaaaaa')
+      axios({
+        method: 'GET',
+        url: `/question/search?q=${payload}`,
+      })
+      .then(({data}) => {
+        console.log(data, 'cekkk')
+        commit('FETCH_DATA', data)
+      })
+      .catch(({response}) => {
+        this.next(response.data)
       })
     }
   

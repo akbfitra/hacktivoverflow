@@ -126,6 +126,7 @@ class QuestionController{
   }
 
   static update(req, res, next){
+    const id = req.params.id
     const fields = [ 'title', 'description', 'tags' ]
     let update = {}
       for( let key in req.body ){
@@ -145,8 +146,9 @@ class QuestionController{
 
   static search(req, res, next){
     console.log(req.query.q)
+
     Question.find({
-      name: new RegExp(`${req.query.q}`, 'gi'),
+      title: new RegExp(`${req.query.q}`, 'gi'),
     })
       .then( data => {
         res.status(200).json(data)

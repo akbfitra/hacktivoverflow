@@ -59,7 +59,7 @@
     <q-drawer v-if="isLogin" show-if-above bordered>
       <q-scroll-area class="fit">
         <q-list  padding>
-          <q-item to="/addproduct"
+          <!-- <q-item to="/addproduct"
           exact >
             <q-item-section avatar >
               <q-icon name="library_add" />
@@ -67,7 +67,7 @@
             <q-item-section>
               <q-item-label>Tags</q-item-label>
             </q-item-section>
-          </q-item>
+          </q-item> -->
           <q-item to="/mypost"
           exact >
             <q-item-section avatar >

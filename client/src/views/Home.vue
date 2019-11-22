@@ -19,7 +19,7 @@
       <q-card-section>
         <div class="q-pa-md ">
           <q-list bordered class="rounded-borders" style="max-width: 100%;">
-          {{questions}}
+          
           <Listitem v-for="question in questions" :key="question._id" :question=question />
             
             

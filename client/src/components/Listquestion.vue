@@ -58,6 +58,7 @@
 
 <script>
 import moment from "moment";
+import Swal from 'sweetalert2/'
 export default {
   name: 'ListItem',
   props: ['question', 'cek'],
@@ -75,7 +76,33 @@ export default {
       this.$router.push({name: "updatequestion", params:{id: id, data: this.question}})
     },
     del(id){
-
+      Swal.fire({
+        title: 'Are you sure To Delete?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Delete'
+      })
+        .then((result) => {
+          if (result.value) {
+            this.$store.dispatch('deletequestion', id)
+            .then(() => {
+              Swal.fire({
+                title: 'Success',
+                text: `Success Delete`,
+                icon: 'success'
+              })
+              this.$store.dispatch('fetchquestion')
+              this.$router.push('/')
+            })
+            .catch( err => {
+              this.next(err)
+            })
+          }
+        })
+      
     }
   }
 }

@@ -106,7 +106,7 @@
     Tags: 
     
     <input-tag placeholder="Add Tag" v-model="tags" :limit=10></input-tag>
-    <q-btn @click.prevent="updatequestion" style="background: goldenrod; color: white; margin-top:30px;;" label="Update Question"  class="full-width" />
+    <q-btn @click.prevent="updatequestion(data._id)" style="background: goldenrod; color: white; margin-top:30px;;" label="Update Question"  class="full-width" />
     </div>
 
 </q-card>
@@ -133,12 +133,12 @@ export default {
     }
   },
   methods: {
-    updatequestion(){
+    updatequestion(id){
       let payload = {
         title: this.title,
         description: this.qeditor,
         tags: this.tags,
-        id: this.id
+        id: id
       }
       this.$store.dispatch('updatequestions', payload)
         .then(data => {
